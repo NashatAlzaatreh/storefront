@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../../store/actions';
+import { addProduct  } from '../../store/actions';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 
 function SimpleCart() {
@@ -12,7 +12,7 @@ function SimpleCart() {
       {state.cart.map((prod) => {
         return (
           <li key={prod.name}>
-            {prod.name} <HighlightOffSharpIcon color="secondary" onClick={() => dispatcher(removeFromCart(prod.id))} />
+            {prod.name} <HighlightOffSharpIcon color="secondary" onClick={() => dispatcher(addProduct(prod))} />
           </li>
         );
       })}
