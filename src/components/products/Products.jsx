@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { addToCart } from '../../store/actions';
+import { removeProduct } from '../../store/actions';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import { green } from '@material-ui/core/colors';
@@ -25,12 +25,12 @@ function Products() {
     <div className="products">
       {state.products.map((prod) => {
         return (
-          <div className="cards">
+          <div className="cards" key={prod.name}>
             <Card className={classes.root} key={prod.name}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
-                  style={{ 'background-size': 'cover', 'background-position': 'center' }}
+                  style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
                   image={prod.image}
                   title={prod.name}
                 />
@@ -39,12 +39,18 @@ function Products() {
                     {prod.name}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p">
+                    {prod.description} 
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
                     {prod.inStock} left
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {prod.price} JD
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" onClick={() => dispatcher(addToCart(prod))}>
+                <Button size="small" color="primary" onClick={() => dispatcher(removeProduct (prod))}>
                   <AddShoppingCartOutlinedIcon style={{ color: green[500] }} />
                   Add
                 </Button>
