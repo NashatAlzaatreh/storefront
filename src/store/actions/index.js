@@ -67,3 +67,10 @@ export const removeFromCart = (id) => {
     payload: id,
   };
 };
+
+export const activeProduct = (product) => {
+  return {
+    type: "ADD_ACTIVE_PRODUCT",
+    payload: product,
+  };
+};

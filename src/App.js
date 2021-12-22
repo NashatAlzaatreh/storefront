@@ -4,6 +4,7 @@ import Categories from "./components/storefront/Categories";
 import Products from "./components/products/Products";
 import SimpleCart from "./components/cart/SimpleCart";
 import Cart from "./components/cart/Cart";
+import ProductDetails from "./components/products/ProductDetails";
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -25,7 +26,12 @@ function App(props) {
           )}
         </Route>
         <Route exact path="/cart">
+          <SimpleCart />
           <Cart />
+        </Route>
+        <Route exact path="/product">
+          <SimpleCart />
+          <ProductDetails />
         </Route>
       </Switch>
       <Footer />

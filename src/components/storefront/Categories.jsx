@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getProduct } from '../../store/actions';
-import { Paper, Tabs, Tab } from '@material-ui/core';
-import './category.scss';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories, getProduct } from "../../store/actions";
+import { Paper, Tabs, Tab } from "@material-ui/core";
+import "./category.scss";
 
 function Categories() {
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.categories);
   console.log("state", state);
   const dispatcher = useDispatch();
   const [value, setValue] = useState(1);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     dispatcher(getCategories());
@@ -34,7 +34,6 @@ function Categories() {
     setValue(newValue);
   };
 
-  
   return (
     <div>
       <Paper square>
@@ -45,10 +44,10 @@ function Categories() {
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          {state.categories.categoryList.map((elm) => {
+          {state.categoryList.map((elm) => {
             return (
               <Tab
-              key={elm.name}
+                key={elm.name}
                 label={elm.name}
                 onClick={() => {
                   dispatcher(getProduct(elm.name));
